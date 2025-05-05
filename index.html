@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yukiya Fansub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    function toggleModal(id) {
+      document.getElementById(id).classList.toggle('hidden');
+    }
+  </script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+  <!-- Navigáció -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold">Yukiya Fansub</h1>
+      <ul class="hidden md:flex space-x-6">
+        <li><a href="#home" class="hover:text-blue-500">Kezdőlap</a></li>
+        <li><a href="#projects" class="hover:text-blue-500">Munkáink</a></li>
+        <li><a href="#news" class="hover:text-blue-500">Hírek</a></li>
+        <li><a href="#recruit" class="hover:text-blue-500">Tagfelvétel</a></li>
+        <li><a href="#about" class="hover:text-blue-500">Rólunk</a></li>
+        <li><button onclick="toggleModal('authModal')" class="hover:text-blue-500">Bejelentkezés</button></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Kezdőlap -->
+  <section id="home" class="p-6">
+    <h2 class="text-2xl font-bold mb-4">Legújabb fejezetek</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <!-- Dinamikus tartalom helye -->
+      <div class="bg-white p-4 rounded shadow">Fejezet 1</div>
+      <div class="bg-white p-4 rounded shadow">Fejezet 2</div>
+      <div class="bg-white p-4 rounded shadow">Fejezet 3</div>
+    </div>
+    <h2 class="text-2xl font-bold mt-8 mb-2">Legfrissebb hír</h2>
+    <div class="bg-white p-4 rounded shadow">Ez itt a legfrissebb hír bejegyzés.</div>
+    <div class="mt-6">
+      <a href="https://discord.com/invite/yourlink" target="_blank" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-full font-bold">Csatlakozz Discordhoz</a>
+    </div>
+  </section>
+
+  <!-- Munkáink -->
+  <section id="projects" class="p-6">
+    <h2 class="text-2xl font-bold mb-4">Projektjeink</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Minta projekt -->
+      <div class="bg-white p-4 rounded shadow">
+        <img src="cover.jpg" alt="Borító" class="w-full h-48 object-cover rounded" />
+        <h3 class="text-xl font-semibold mt-2">Cím</h3>
+        <p class="text-sm">Ismertető szöveg...</p>
+        <p class="text-xs mt-1">Státusz: Aktív</p>
+        <a href="https://bato.to/link" target="_blank" class="text-blue-600 underline text-sm">Olvasás</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hírek -->
+  <section id="news" class="p-6">
+    <h2 class="text-2xl font-bold mb-4">Hírek</h2>
+    <div class="bg-white p-4 rounded shadow">
+      <h3 class="text-lg font-semibold">Cím</h3>
+      <p class="text-sm">Bejegyzés tartalma...</p>
+      <div class="mt-4">
+        <textarea placeholder="Hozzászólás..." class="w-full p-2 border rounded"></textarea>
+        <button class="mt-2 px-4 py-1 bg-blue-500 text-white rounded">Küldés</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tagfelvétel -->
+  <section id="recruit" class="p-6">
+    <h2 class="text-2xl font-bold mb-4">Tagfelvétel</h2>
+    <ul class="list-disc ml-5">
+      <li><strong>Fordító:</strong> Japán -> Magyar fordítás</li>
+      <li><strong>Lektor:</strong> Nyelvhelyességi ellenőrzés</li>
+      <li><strong>Szerkesztő:</strong> Szöveg elhelyezése a képeken</li>
+      <li><strong>Tisztító:</strong> Eredeti szöveg törlése, háttérjavítás</li>
+    </ul>
+    <h3 class="mt-4 font-semibold">Jelenleg keresett szerepkörök:</h3>
+    <p>Fordító, tisztító</p>
+    <h3 class="mt-4 font-semibold">Kapcsolattartók:</h3>
+    <ul>
+      <li>Kata – kata#1234</li>
+      <li>Miki – miki#5678</li>
+    </ul>
+  </section>
+
+  <!-- Rólunk -->
+  <section id="about" class="p-6">
+    <h2 class="text-2xl font-bold mb-4">Rólunk</h2>
+    <p>A Yukiya Fansub 2020 óta foglalkozik manga fordítással. Célunk minőségi magyar kiadás biztosítása.</p>
+    <h3 class="mt-4 font-semibold">Csapat:</h3>
+    <ul>
+      <li><strong>Fordítók:</strong> Kata, Bence</li>
+      <li><strong>Lektorok:</strong> Miki</li>
+      <li><strong>Szerkesztők:</strong> Anna</li>
+    </ul>
+  </section>
+
+  <!-- Auth modál -->
+  <div id="authModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-white rounded p-6 w-96">
+      <h2 class="text-xl font-bold mb-4">Bejelentkezés / Regisztráció</h2>
+      <input type="text" placeholder="Felhasználónév" class="w-full p-2 border rounded mb-2">
+      <input type="password" placeholder="Jelszó" class="w-full p-2 border rounded mb-2">
+      <button class="w-full bg-blue-600 text-white py-2 rounded">Bejelentkezés</button>
+      <button class="w-full mt-2 text-sm text-gray-500" onclick="toggleModal('authModal')">Bezárás</button>
+    </div>
+  </div>
+</body>
+</html>
