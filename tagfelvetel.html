@@ -78,8 +78,8 @@
       <p class="text-sm" style="color: var(--text-secondary);">Csatlakozz a csapathoz, válaszd a neked való szerepet!</p>
     </header>
 
-    <!-- Szerepkör-leírások -->
-    <section class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+    <!-- Szerepkör-leírások: mindig 2 oszlop -->
+    <section class="grid gap-8 grid-cols-1 md:grid-cols-2">
       <!-- Fordító -->
       <article class="bg-[#1e1e1e] rounded-lg p-6 space-y-4">
         <h2 class="text-2xl font-semibold" style="color: var(--text-primary);">Fordító</h2>
@@ -112,7 +112,7 @@
 
     <!-- Jelenleg keresett szerepkörök -->
     <section class="bg-[#1e1e1e] rounded-lg p-6 space-y-4">
-      <h2 class="text-2xl font-semibold" style="color: var(--primary);">Jelenleg keresünk</h2>
+      <h2 class="text-2xl font-semibold" style="color: var(--text-primary);">Jelenleg keresünk</h2>
       <ul class="list-disc list-inside" style="color: var(--text-primary);">
         <li>Fordító</li>
         <li>Lektor</li>
@@ -135,6 +135,7 @@
     </section>
   </main>
 
+  <!-- SCRIPT a modalhoz -->
   <script>
     const loginBtn = document.getElementById('loginBtn');
     const loginModal = document.getElementById('loginModal');
