@@ -10,46 +10,122 @@
     body {
       font-family: 'EB Garamond', serif;
       background-color: #121212;
-      color: #f0f0f0;
+      color: #e0e0e0;
     }
   </style>
 </head>
-<body class="min-h-screen px-4 py-8">
+<body class="min-h-screen flex flex-col">
 
-  <header class="mb-8">
-    <h1 class="text-4xl font-bold text-center text-purple-400">Munkáink</h1>
-    <p class="text-center text-gray-400">Aktív, szüneteltetett és befejezett projektjeink</p>
-  </header>
+  <!-- NAVIGÁCIÓ -->
+  <nav class="bg-[#1f1f1f] text-gray-200 px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="text-2xl font-bold text-purple-400">Yukiya Fansub</a>
+    <ul class="hidden md:flex space-x-6">
+      <li><a href="index.html" class="hover:text-purple-300">Kezdőlap</a></li>
+      <li><a href="munkaink.html" class="text-purple-300 font-semibold">Munkáink</a></li>
+      <li><a href="hirek.html" class="hover:text-purple-300">Hírek</a></li>
+      <li><a href="tagfelvetel.html" class="hover:text-purple-300">Tagfelvétel</a></li>
+      <li><a href="rolunk.html" class="hover:text-purple-300">Rólunk</a></li>
+    </ul>
+    <div class="flex items-center space-x-4">
+      <a href="https://discord.gg/k8HE6rUeDC" target="_blank"
+         class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-md text-sm">
+        Discord
+      </a>
+      <button id="loginBtn"
+              class="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-md text-sm">
+        Bejelentkezés
+      </button>
+    </div>
+  </nav>
 
-  <main class="grid gap-8 md:grid-cols-2">
-    
-    <!-- Projektkártya 1 -->
-    <section class="bg-[#1e1e1e] rounded-lg p-4 flex flex-col md:flex-row">
-      <img src="https://via.placeholder.com/120x180" alt="Borítókép" class="w-32 h-auto rounded-md mx-auto md:mx-0 md:mr-4">
-      <div class="flex-1 mt-4 md:mt-0">
-        <h2 class="text-2xl font-semibold text-purple-300">Cím: Shoujo Manga</h2>
-        <p class="text-gray-300">Alkotó: Jane Doe</p>
-        <p class="text-green-400 font-semibold">Státusz: Aktív</p>
-        <p class="text-sm text-gray-400">Fordítók: Suzu, Momo</p>
-        <p class="mt-2 text-gray-200">Egy varázslatos történet szerelemről és sorsról...</p>
-        <a href="https://bato.to" target="_blank" class="inline-block mt-2 text-indigo-400 hover:underline">Olvasd Bato.to-n</a>
-      </div>
+  <!-- LOGIN MODAL (placeholder) -->
+  <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center hidden">
+    <div class="bg-[#1e1e1e] p-6 rounded-lg w-80">
+      <h2 class="text-xl font-semibold text-purple-300 mb-4">Bejelentkezés</h2>
+      <form>
+        <input type="email" placeholder="E-mail" class="w-full mb-3 px-3 py-2 rounded bg-gray-800 text-gray-100" />
+        <input type="password" placeholder="Jelszó" class="w-full mb-3 px-3 py-2 rounded bg-gray-800 text-gray-100" />
+        <button type="submit" class="w-full py-2 bg-purple-400 hover:bg-purple-300 rounded text-gray-900 font-semibold">
+          Belépés
+        </button>
+      </form>
+      <button id="closeLogin" class="mt-4 text-sm text-gray-400 hover:underline">Mégse</button>
+    </div>
+  </div>
+
+  <!-- OLDALTARTALOM -->
+  <main class="flex-1 px-6 py-8">
+    <header class="mb-8 text-center">
+      <h1 class="text-4xl font-bold text-purple-400">Munkáink</h1>
+      <p class="text-gray-400">Aktív, szüneteltetett és befejezett projektjeink</p>
+    </header>
+
+    <section class="grid gap-8 md:grid-cols-2">
+      <!-- Projektkártya 1 -->
+      <article class="bg-[#1e1e1e] rounded-lg overflow-hidden flex flex-col md:flex-row">
+        <img
+          src="https://via.placeholder.com/120x180"
+          alt="Borítókép"
+          class="w-full md:w-32 object-cover"
+        />
+        <div class="p-4 flex-1 flex flex-col justify-between">
+          <div>
+            <h2 class="text-2xl font-semibold text-purple-300">Shoujo Manga</h2>
+            <p class="text-gray-300">Alkotó: Jane Doe</p>
+            <p class="text-green-400 font-semibold">Státusz: Aktív</p>
+            <p class="text-sm text-gray-400">Fordítók: Suzu, Momo</p>
+            <p class="mt-2 text-gray-200">Egy varázslatos történet szerelemről és sorsról...</p>
+          </div>
+          <a
+            href="https://bato.to"
+            target="_blank"
+            class="mt-4 inline-block self-start px-3 py-1 bg-indigo-600 hover:bg-indigo-500 rounded text-sm"
+          >
+            Olvasd Bato.to-n
+          </a>
+        </div>
+      </article>
+
+      <!-- Projektkártya 2 -->
+      <article class="bg-[#1e1e1e] rounded-lg overflow-hidden flex flex-col md:flex-row">
+        <img
+          src="https://via.placeholder.com/120x180"
+          alt="Borítókép"
+          class="w-full md:w-32 object-cover"
+        />
+        <div class="p-4 flex-1 flex flex-col justify-between">
+          <div>
+            <h2 class="text-2xl font-semibold text-purple-300">Akuma to Love</h2>
+            <p class="text-gray-300">Alkotó: Yuki Tanaka</p>
+            <p class="text-yellow-300 font-semibold">Státusz: Szünetel</p>
+            <p class="text-sm text-gray-400">Fordítók: Suzu</p>
+            <p class="mt-2 text-gray-200">Egy démonfiú és egy halandó lány bonyolult kapcsolata...</p>
+          </div>
+          <a
+            href="https://bato.to"
+            target="_blank"
+            class="mt-4 inline-block self-start px-3 py-1 bg-indigo-600 hover:bg-indigo-500 rounded text-sm"
+          >
+            Olvasd Bato.to-n
+          </a>
+        </div>
+      </article>
     </section>
-
-    <!-- Projektkártya 2 -->
-    <section class="bg-[#1e1e1e] rounded-lg p-4 flex flex-col md:flex-row">
-      <img src="https://via.placeholder.com/120x180" alt="Borítókép" class="w-32 h-auto rounded-md mx-auto md:mx-0 md:mr-4">
-      <div class="flex-1 mt-4 md:mt-0">
-        <h2 class="text-2xl font-semibold text-purple-300">Cím: Akuma to Love</h2>
-        <p class="text-gray-300">Alkotó: Yuki Tanaka</p>
-        <p class="text-yellow-300 font-semibold">Státusz: Szünetel</p>
-        <p class="text-sm text-gray-400">Fordítók: Suzu</p>
-        <p class="mt-2 text-gray-200">Egy démonfiú és egy halandó lány bonyolult kapcsolata...</p>
-        <a href="https://bato.to" target="_blank" class="inline-block mt-2 text-indigo-400 hover:underline">Olvasd Bato.to-n</a>
-      </div>
-    </section>
-
   </main>
+
+  <!-- SCRIPT a modalhoz -->
+  <script>
+    const loginBtn = document.getElementById('loginBtn');
+    const loginModal = document.getElementById('loginModal');
+    const closeLogin = document.getElementById('closeLogin');
+
+    loginBtn.addEventListener('click', () => {
+      loginModal.classList.remove('hidden');
+    });
+    closeLogin.addEventListener('click', () => {
+      loginModal.classList.add('hidden');
+    });
+  </script>
 
 </body>
 </html>
