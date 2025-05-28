@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yukiya Fansub</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'EB Garamond', serif;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-900 text-gray-100">
+  <!-- Navigációs sáv -->
+  <header class="bg-gray-800 shadow p-4 flex justify-between items-center">
+    <div class="flex items-center gap-4">
+      <img src="DC kép (kisebb).jpg" alt="Yukiya Fansub logó" class="h-10 w-auto">
+      <nav class="flex gap-4 text-lg">
+        <a href="index.html" class="hover:text-purple-400">Kezdőlap</a>
+        <a href="munkaink.html" class="hover:text-purple-400">Munkáink</a>
+        <a href="hirek.html" class="hover:text-purple-400">Hírek</a>
+        <a href="tagfelvetel.html" class="hover:text-purple-400">Tagfelvétel</a>
+        <a href="rolunk.html" class="hover:text-purple-400">Rólunk</a>
+      </nav>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="https://discord.gg/k8HE6rUeDC" target="_blank"
+        class="bg-purple-600 hover:bg-purple-700 text-white px-3 py-1 rounded">Discord</a>
+      <button onclick="toggleModal()" class="bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded">Bejelentkezés</button>
+    </div>
+  </header>
+
+  <!-- Kezdőlap tartalom -->
+  <main class="p-6">
+    <section class="mb-8">
+      <h1 class="text-3xl font-bold mb-4">Legújabb fejezetek</h1>
+      <div id="latest-chapters" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Fejezetek betöltve JavaScripttel -->
+      </div>
+    </section>
+    <section class="mb-8">
+      <h2 class="text-2xl font-bold mb-4">Legfrissebb hír</h2>
+      <div id="latest-news" class="bg-gray-800 p-4 rounded shadow">
+        <!-- Friss hír betöltve JavaScripttel -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Bejelentkezés modál -->
+  <div id="loginModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <div class="bg-gray-800 p-6 rounded shadow-lg w-80">
+      <h3 class="text-xl font-semibold mb-4">Bejelentkezés</h3>
+      <input type="text" placeholder="Felhasználónév" class="w-full mb-2 px-3 py-2 rounded bg-gray-700">
+      <input type="password" placeholder="Jelszó" class="w-full mb-4 px-3 py-2 rounded bg-gray-700">
+      <button class="bg-purple-600 hover:bg-purple-700 w-full py-2 rounded">Belépés</button>
+      <button onclick="toggleModal()" class="mt-2 w-full py-1 text-sm text-gray-400 hover:text-white">Bezárás</button>
+    </div>
+  </div>
+
+  <script>
+    function toggleModal() {
+      document.getElementById('loginModal').classList.toggle('hidden');
+    }
+
+    // Dummy adat a legújabb fejezetekhez
+    const chapters = [
+      { title: 'Manga 1 – Fejezet 10', link: '#', cover: 'https://via.placeholder.com/150' },
+      { title: 'Manga 2 – Fejezet 5', link: '#', cover: 'https://via.placeholder.com/150' },
+      { title: 'Manga 3 – Fejezet 22', link: '#', cover: 'https://via.placeholder.com/150' }
+    ];
+
+    const news = {
+      title: 'Új projekt indul! 🎉',
+      content: 'A Yukiya Fansub új mangát kezdett el fordítani – maradjatok velünk a részletekért!'
+    };
+
+    const chaptersContainer = document.getElementById('latest-chapters');
+    chapters.forEach(ch => {
+      chaptersContainer.innerHTML += `
+        <a href="${ch.link}" class="bg-gray-800 p-4 rounded shadow hover:bg-gray-700">
+          <img src="${ch.cover}" alt="${ch.title}" class="mb-2 rounded">
+          <h3 class="text-lg font-semibold">${ch.title}</h3>
+        </a>`;
+    });
+
+    document.getElementById('latest-news').innerHTML = `
+      <h3 class="text-xl font-bold">${news.title}</h3>
+      <p class="mt-2">${news.content}</p>
+    `;
+  </script>
+</body>
+
+</html>
