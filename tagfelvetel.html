@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tagfelvétel | Yukiya Fansub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #121212;
+      --nav-bg: #1f1f1f;
+      --text-primary: #e0e0e0;
+      --text-secondary: #a0a0a0;
+      --brand: #9f7aea;
+      --cta: #5a67d8;
+      --cta-hover: #434190;
+    }
+    body {
+      font-family: 'EB Garamond', serif;
+      background-color: var(--bg);
+      color: var(--text-primary);
+    }
+    nav {
+      background-color: var(--nav-bg);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- NAVIGÁCIÓ -->
+  <nav class="px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="text-2xl font-bold" style="color: var(--brand);">
+      Yukiya Fansub
+    </a>
+    <ul class="hidden md:flex space-x-6">
+      <li><a href="index.html" class="hover:opacity-80" style="color: var(--text-primary);">Kezdőlap</a></li>
+      <li><a href="munkaink.html" class="hover:opacity-80" style="color: var(--text-primary);">Munkáink</a></li>
+      <li><a href="hirek.html" class="hover:opacity-80" style="color: var(--text-primary);">Hírek</a></li>
+      <li><a href="tagfelvetel.html" class="font-semibold" style="color: var(--brand);">Tagfelvétel</a></li>
+      <li><a href="rolunk.html" class="hover:opacity-80" style="color: var(--text-primary);">Rólunk</a></li>
+    </ul>
+    <div class="flex items-center space-x-4">
+      <a href="https://discord.gg/k8HE6rUeDC" target="_blank"
+         class="px-4 py-2 rounded-md text-sm"
+         style="background-color: var(--cta); color: var(--text-primary);"
+         onmouseover="this.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--cta-hover')"
+         onmouseout="this.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--cta')">
+        Discord
+      </a>
+      <button id="loginBtn" class="px-4 py-2 rounded-md text-sm"
+              style="background-color: var(--nav-bg); color: var(--text-primary);">
+        Bejelentkezés
+      </button>
+    </div>
+  </nav>
+
+  <!-- LOGIN MODAL -->
+  <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center hidden">
+    <div class="bg-[#1e1e1e] p-6 rounded-lg w-80">
+      <h2 class="text-xl font-semibold mb-4" style="color: var(--brand);">Bejelentkezés</h2>
+      <form>
+        <input type="email" placeholder="E-mail" class="w-full mb-3 px-3 py-2 rounded bg-gray-800 text-gray-100"/>
+        <input type="password" placeholder="Jelszó" class="w-full mb-3 px-3 py-2 rounded bg-gray-800 text-gray-100"/>
+        <button type="submit" class="w-full py-2 rounded font-semibold"
+                style="background-color: var(--brand); color: var(--bg);">
+          Belépés
+        </button>
+      </form>
+      <button id="closeLogin" class="mt-4 text-sm" style="color: var(--text-secondary);">Mégse</button>
+    </div>
+  </div>
+
+  <!-- OLDALTARTALOM -->
+  <main class="flex-1 px-6 py-8 space-y-12">
+    <header class="text-center">
+      <h1 class="text-4xl font-bold" style="color: var(--brand);">Tagfelvétel</h1>
+      <p class="text-sm" style="color: var(--text-secondary);">Csatlakozz a csapathoz, válaszd a neked való szerepet!</p>
+    </header>
+
+    <!-- Szerepkör-leírások -->
+    <section class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+      <!-- Fordító -->
+      <article class="bg-[#1e1e1e] rounded-lg p-6 space-y-4">
+        <h2 class="text-2xl font-semibold" style="color: var(--text-primary);">Fordító</h2>
+        <p style="color: var(--text-secondary);">
+          A mangaszöveget lefordítod magyarra, figyelve a hangulatra és stílusra.
+        </p>
+      </article>
+      <!-- Lektor -->
+      <article class="bg-[#1e1e1e] rounded-lg p-6 space-y-4">
+        <h2 class="text-2xl font-semibold" style="color: var(--text-primary);">Lektor</h2>
+        <p style="color: var(--text-secondary);">
+          Ellenőrzöd a fordítást, javítod a nyelvtani és stilisztikai hibákat.
+        </p>
+      </article>
+      <!-- Szerkesztő -->
+      <article class="bg-[#1e1e1e] rounded-lg p-6 space-y-4">
+        <h2 class="text-2xl font-semibold" style="color: var(--text-primary);">Szerkesztő</h2>
+        <p style="color: var(--text-secondary);">
+          A beillesztett szöveg formázása, panel-elrendezés és felirat pozicionálás.
+        </p>
+      </article>
+      <!-- Tisztító -->
+      <article class="bg-[#1e1e1e] rounded-lg p-6 space-y-4">
+        <h2 class="text-2xl font-semibold" style="color: var(--text-primary);">Tisztító</h2>
+        <p style="color: var(--text-secondary);">
+          Eltávolítod a japán feliratot a képekről és előkészíted a paneleket.
+        </p>
+      </article>
+    </section>
+
+    <!-- Jelenleg keresett szerepkörök -->
+    <section class="bg-[#1e1e1e] rounded-lg p-6 space-y-4">
+      <h2 class="text-2xl font-semibold" style="color: var(--primary);">Jelenleg keresünk</h2>
+      <ul class="list-disc list-inside" style="color: var(--text-primary);">
+        <li>Fordító</li>
+        <li>Lektor</li>
+        <li>Tisztító</li>
+      </ul>
+    </section>
+
+    <!-- Kapcsolattartók -->
+    <section class="bg-[#1e1e1e] rounded-lg p-6 space-y-4">
+      <h2 class="text-2xl font-semibold" style="color: var(--text-primary);">Kapcsolattartók</h2>
+      <ul class="space-y-2">
+        <li style="color: var(--text-secondary);">
+          Suzu – Discord: <a href="https://discord.gg/k8HE6rUeDC" class="underline" style="color: var(--cta);">Suzu#1234</a>
+        </li>
+        <li style="color: var(--text-secondary);">
+          Momo – Discord: <a href="#" class="underline" style="color: var(--cta);">Momo#5678</a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    const loginBtn = document.getElementById('loginBtn');
+    const loginModal = document.getElementById('loginModal');
+    const closeLogin = document.getElementById('closeLogin');
+    loginBtn.addEventListener('click', () => loginModal.classList.remove('hidden'));
+    closeLogin.addEventListener('click', () => loginModal.classList.add('hidden'));
+  </script>
+
+</body>
+</html>
