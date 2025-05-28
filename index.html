@@ -1,97 +1,137 @@
 <!DOCTYPE html>
 <html lang="hu">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yukiya Fansub</title>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg: #121212;            /* háttér */
+      --nav-bg: #1f1f1f;        /* nav háttér */
+      --text-primary: #e0e0e0;  /* főszöveg */
+      --text-secondary: #a0a0a0;/* alapszöveg */
+      --brand: #9f7aea;         /* fő lila */
+      --cta: #5a67d8;           /* gomb/link szín */
+      --cta-hover: #434190;     /* gomb hover */
+      --status-active: #48bb78; /* “Aktív” */
+      --status-paused: #ecc94b; /* “Szünetel” */
+      --status-done: #63b3ed;   /* “Befejezett” */
+    }
     body {
       font-family: 'EB Garamond', serif;
+      background-color: var(--bg);
+      color: var(--text-primary);
+    }
+    nav {
+      background-color: var(--nav-bg);
     }
   </style>
 </head>
+<body class="min-h-screen flex flex-col">
 
-<body class="bg-gray-900 text-gray-100">
-  <!-- Navigációs sáv -->
-  <header class="bg-gray-800 shadow p-4 flex justify-between items-center">
-    <div class="flex items-center gap-4">
-      <img src="DC kép (kisebb).jpg" alt="Yukiya Fansub logó" class="h-10 w-auto">
-      <nav class="flex gap-4 text-lg">
-        <a href="index.html" class="hover:text-purple-400">Kezdőlap</a>
-        <a href="munkaink.html" class="hover:text-purple-400">Munkáink</a>
-        <a href="hirek.html" class="hover:text-purple-400">Hírek</a>
-        <a href="tagfelvetel.html" class="hover:text-purple-400">Tagfelvétel</a>
-        <a href="rolunk.html" class="hover:text-purple-400">Rólunk</a>
-      </nav>
-    </div>
-    <div class="flex items-center gap-4">
+  <!-- NAVIGÁCIÓ -->
+  <nav class="px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="text-2xl font-bold" style="color: var(--brand);">
+      Yukiya Fansub
+    </a>
+    <ul class="hidden md:flex space-x-6">
+      <li><a href="index.html" class="font-semibold" style="color: var(--brand);">Kezdőlap</a></li>
+      <li><a href="munkaink.html" class="hover:opacity-80" style="color: var(--text-primary);">Munkáink</a></li>
+      <li><a href="hirek.html" class="hover:opacity-80" style="color: var(--text-primary);">Hírek</a></li>
+      <li><a href="tagfelvetel.html" class="hover:opacity-80" style="color: var(--text-primary);">Tagfelvétel</a></li>
+      <li><a href="rolunk.html" class="hover:opacity-80" style="color: var(--text-primary);">Rólunk</a></li>
+    </ul>
+    <div class="flex items-center space-x-4">
       <a href="https://discord.gg/k8HE6rUeDC" target="_blank"
-        class="bg-purple-600 hover:bg-purple-700 text-white px-3 py-1 rounded">Discord</a>
-      <button onclick="toggleModal()" class="bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded">Bejelentkezés</button>
+         class="px-4 py-2 rounded-md text-sm"
+         style="background-color: var(--cta); color: var(--text-primary);"
+         onmouseover="this.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--cta-hover')"
+         onmouseout="this.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--cta')"
+      >
+        Discord
+      </a>
+      <button id="loginBtn"
+              class="px-4 py-2 rounded-md text-sm"
+              style="background-color: var(--nav-bg); color: var(--text-primary);">
+        Bejelentkezés
+      </button>
     </div>
-  </header>
+  </nav>
 
-  <!-- Kezdőlap tartalom -->
-  <main class="p-6">
-    <section class="mb-8">
-      <h1 class="text-3xl font-bold mb-4">Legújabb fejezetek</h1>
-      <div id="latest-chapters" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Fejezetek betöltve JavaScripttel -->
-      </div>
-    </section>
-    <section class="mb-8">
-      <h2 class="text-2xl font-bold mb-4">Legfrissebb hír</h2>
-      <div id="latest-news" class="bg-gray-800 p-4 rounded shadow">
-        <!-- Friss hír betöltve JavaScripttel -->
-      </div>
-    </section>
-  </main>
-
-  <!-- Bejelentkezés modál -->
-  <div id="loginModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-    <div class="bg-gray-800 p-6 rounded shadow-lg w-80">
-      <h3 class="text-xl font-semibold mb-4">Bejelentkezés</h3>
-      <input type="text" placeholder="Felhasználónév" class="w-full mb-2 px-3 py-2 rounded bg-gray-700">
-      <input type="password" placeholder="Jelszó" class="w-full mb-4 px-3 py-2 rounded bg-gray-700">
-      <button class="bg-purple-600 hover:bg-purple-700 w-full py-2 rounded">Belépés</button>
-      <button onclick="toggleModal()" class="mt-2 w-full py-1 text-sm text-gray-400 hover:text-white">Bezárás</button>
+  <!-- LOGIN MODAL -->
+  <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center hidden">
+    <div class="bg-[#1e1e1e] p-6 rounded-lg w-80">
+      <h2 class="text-xl font-semibold mb-4" style="color: var(--brand);">Bejelentkezés</h2>
+      <form>
+        <input type="email" placeholder="E-mail" class="w-full mb-3 px-3 py-2 rounded bg-gray-800 text-gray-100" />
+        <input type="password" placeholder="Jelszó" class="w-full mb-3 px-3 py-2 rounded bg-gray-800 text-gray-100" />
+        <button type="submit" class="w-full py-2 rounded font-semibold"
+                style="background-color: var(--brand); color: var(--bg);">
+          Belépés
+        </button>
+      </form>
+      <button id="closeLogin" class="mt-4 text-sm" style="color: var(--text-secondary);">Mégse</button>
     </div>
   </div>
 
+  <!-- OLDALTARTALOM -->
+  <main class="flex-1 px-6 py-8">
+    <!-- Legújabb fejezetek -->
+    <section class="mb-12">
+      <h1 class="text-3xl font-bold mb-4" style="color: var(--brand);">Legújabb fejezetek</h1>
+      <div class="grid gap-6 md:grid-cols-3">
+        <!-- Dummy példa -->
+        <article class="bg-[#1e1e1e] rounded-lg p-4 flex flex-col">
+          <h2 class="text-xl font-semibold mb-2" style="color: var(--text-primary);">Projekt 1. Fejezet</h2>
+          <p class="text-sm mb-4" style="color: var(--text-secondary);">2025. május 27.</p>
+          <a href="https://bato.to" target="_blank"
+             class="mt-auto inline-block px-3 py-2 rounded text-sm"
+             style="background-color: var(--cta); color: var(--text-primary);"
+             onmouseover="this.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--cta-hover')"
+             onmouseout="this.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--cta')"
+          >
+            Olvasd Bato.to-n
+          </a>
+        </article>
+        <!-- Add még 2 -->
+      </div>
+    </section>
+
+    <!-- Legfrissebb hír -->
+    <section class="mb-12">
+      <h1 class="text-3xl font-bold mb-4" style="color: var(--brand);">Legfrissebb hír</h1>
+      <article class="bg-[#1e1e1e] rounded-lg p-6">
+        <h2 class="text-2xl font-semibold mb-2" style="color: var(--text-primary);">Új tagfelvétel indul</h2>
+        <p class="text-sm mb-4" style="color: var(--text-secondary);">2025. május 25.</p>
+        <p class="mb-4" style="color: var(--text-primary);">
+          Mostantól új fordítót, lektort és tisztítót keresünk! Ha érdekel, kattints a Tagfelvétel menüpontra.
+        </p>
+        <a href="tagfelvetel.html"
+           class="inline-block px-3 py-2 rounded text-sm"
+           style="background-color: var(--cta); color: var(--text-primary);"
+           onmouseover="this.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--cta-hover')"
+           onmouseout="this.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--cta')"
+        >
+          Tovább a hírekhez
+        </a>
+      </article>
+    </section>
+  </main>
+
   <script>
-    function toggleModal() {
-      document.getElementById('loginModal').classList.toggle('hidden');
-    }
+    const loginBtn = document.getElementById('loginBtn');
+    const loginModal = document.getElementById('loginModal');
+    const closeLogin = document.getElementById('closeLogin');
 
-    // Dummy adat a legújabb fejezetekhez
-    const chapters = [
-      { title: 'Manga 1 – Fejezet 10', link: '#', cover: 'https://via.placeholder.com/150' },
-      { title: 'Manga 2 – Fejezet 5', link: '#', cover: 'https://via.placeholder.com/150' },
-      { title: 'Manga 3 – Fejezet 22', link: '#', cover: 'https://via.placeholder.com/150' }
-    ];
-
-    const news = {
-      title: 'Új projekt indul! 🎉',
-      content: 'A Yukiya Fansub új mangát kezdett el fordítani – maradjatok velünk a részletekért!'
-    };
-
-    const chaptersContainer = document.getElementById('latest-chapters');
-    chapters.forEach(ch => {
-      chaptersContainer.innerHTML += `
-        <a href="${ch.link}" class="bg-gray-800 p-4 rounded shadow hover:bg-gray-700">
-          <img src="${ch.cover}" alt="${ch.title}" class="mb-2 rounded">
-          <h3 class="text-lg font-semibold">${ch.title}</h3>
-        </a>`;
+    loginBtn.addEventListener('click', () => {
+      loginModal.classList.remove('hidden');
     });
-
-    document.getElementById('latest-news').innerHTML = `
-      <h3 class="text-xl font-bold">${news.title}</h3>
-      <p class="mt-2">${news.content}</p>
-    `;
+    closeLogin.addEventListener('click', () => {
+      loginModal.classList.add('hidden');
+    });
   </script>
-</body>
 
+</body>
 </html>
