@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hírek | Yukiya Fansub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #121212;
+      --nav-bg: #1f1f1f;
+      --text-primary: #e0e0e0;
+      --text-secondary: #a0a0a0;
+      --brand: #9f7aea;
+      --cta: #5a67d8;
+      --cta-hover: #434190;
+    }
+    body {
+      font-family: 'EB Garamond', serif;
+      background-color: var(--bg);
+      color: var(--text-primary);
+    }
+    nav {
+      background-color: var(--nav-bg);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- NAVIGÁCIÓ -->
+  <nav class="px-6 py-4 flex items-center justify-between">
+    <a href="index.html" class="text-2xl font-bold" style="color: var(--brand);">Yukiya Fansub</a>
+    <ul class="hidden md:flex space-x-6">
+      <li><a href="index.html" class="hover:opacity-80" style="color: var(--text-primary);">Kezdőlap</a></li>
+      <li><a href="munkaink.html" class="hover:opacity-80" style="color: var(--text-primary);">Munkáink</a></li>
+      <li><a href="hirek.html" class="font-semibold" style="color: var(--brand);">Hírek</a></li>
+      <li><a href="tagfelvetel.html" class="hover:opacity-80" style="color: var(--text-primary);">Tagfelvétel</a></li>
+      <li><a href="rolunk.html" class="hover:opacity-80" style="color: var(--text-primary);">Rólunk</a></li>
+    </ul>
+    <div class="flex items-center space-x-4">
+      <a href="https://discord.gg/k8HE6rUeDC" target="_blank"
+         class="px-4 py-2 rounded-md text-sm"
+         style="background-color: var(--cta); color: var(--text-primary);"
+         onmouseover="this.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--cta-hover')"
+         onmouseout="this.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--cta')">
+        Discord
+      </a>
+      <button id="loginBtn" class="px-4 py-2 rounded-md text-sm"
+              style="background-color: var(--nav-bg); color: var(--text-primary);">
+        Bejelentkezés
+      </button>
+    </div>
+  </nav>
+
+  <!-- LOGIN MODAL -->
+  <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center hidden">
+    <div class="bg-[#1e1e1e] p-6 rounded-lg w-80">
+      <h2 class="text-xl font-semibold mb-4" style="color: var(--brand);">Bejelentkezés</h2>
+      <form>
+        <input type="email" placeholder="E-mail" class="w-full mb-3 px-3 py-2 rounded bg-gray-800 text-gray-100"/>
+        <input type="password" placeholder="Jelszó" class="w-full mb-3 px-3 py-2 rounded bg-gray-800 text-gray-100"/>
+        <button type="submit" class="w-full py-2 rounded font-semibold"
+                style="background-color: var(--brand); color: var(--bg);">
+          Belépés
+        </button>
+      </form>
+      <button id="closeLogin" class="mt-4 text-sm" style="color: var(--text-secondary);">Mégse</button>
+    </div>
+  </div>
+
+  <!-- OLDALTARTALOM -->
+  <main class="flex-1 px-6 py-8 space-y-12">
+    <header class="text-center">
+      <h1 class="text-4xl font-bold" style="color: var(--brand);">Hírek</h1>
+      <p class="text-sm" style="color: var(--text-secondary);">Olvasói és csapatfrissítések</p>
+    </header>
+
+    <!-- BLOGBEJEGYZÉS #1 -->
+    <article class="bg-[#1e1e1e] rounded-lg p-6 space-y-4">
+      <h2 class="text-2xl font-semibold" style="color: var(--text-primary);">Új fejezet a “Shoujo Manga”-ból</h2>
+      <p class="text-xs" style="color: var(--text-secondary);">2025. május 20.</p>
+      <p style="color: var(--text-primary);">
+        Kijött az 5. fejezet, amit Suzu és Momo fordított le. A történet most fordulatosabb, mint valaha!
+      </p>
+      <div class="flex space-x-4">
+        <a href="https://bato.to" target="_blank"
+           class="px-3 py-1 rounded text-sm"
+           style="background-color: var(--cta); color: var(--text-primary);"
+           onmouseover="this.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--cta-hover')"
+           onmouseout="this.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--cta')">
+          Olvasd Bato.to-n
+        </a>
+        <button class="px-3 py-1 rounded text-sm"
+                style="background-color: var(--nav-bg); color: var(--text-primary);">
+          Teljes bejegyzés
+        </button>
+      </div>
+
+      <!-- Kommentek (placeholder) -->
+      <section class="mt-6">
+        <h3 class="font-semibold" style="color: var(--brand);">Hozzászólások</h3>
+        <p class="text-xs" style="color: var(--text-secondary);">Csak regisztrált felhasználók írhatnak.</p>
+        <!-- Itt később a Firebase kommentek jönnek be -->
+        <div class="mt-2">
+          <p class="text-sm" style="color: var(--text-secondary);">Nincsenek még hozzászólások. Légy te az első!</p>
+        </div>
+      </section>
+    </article>
+
+    <!-- BLOGBEJEGYZÉS #2 -->
+    <article class="bg-[#1e1e1e] rounded-lg p-6 space-y-4">
+      <h2 class="text-2xl font-semibold" style="color: var(--text-primary);">Tagfelvétel indul!</h2>
+      <p class="text-xs" style="color: var(--text-secondary);">2025. május 15.</p>
+      <p style="color: var(--text-primary);">
+        Most keresünk fordítókat, lektorokat és tisztítókat – ha érdekel, nézd meg a Tagfelvétel oldalt!
+      </p>
+      <div class="flex space-x-4">
+        <a href="tagfelvetel.html"
+           class="px-3 py-1 rounded text-sm"
+           style="background-color: var(--cta); color: var(--text-primary);"
+           onmouseover="this.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--cta-hover')"
+           onmouseout="this.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--cta')">
+          Tagfelvétel
+        </a>
+      </div>
+      
+      <!-- Kommentek (placeholder) -->
+      <section class="mt-6">
+        <h3 class="font-semibold" style="color: var(--brand);">Hozzászólások</h3>
+        <p class="text-xs" style="color: var(--text-secondary);">Csak regisztrált felhasználók írhatnak.</p>
+        <div class="mt-2">
+          <p class="text-sm" style="color: var(--text-secondary);">Nincsenek még hozzászólások. Indítsd el a beszélgetést!</p>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <script>
+    const loginBtn = document.getElementById('loginBtn');
+    const loginModal = document.getElementById('loginModal');
+    const closeLogin = document.getElementById('closeLogin');
+    loginBtn.addEventListener('click', () => loginModal.classList.remove('hidden'));
+    closeLogin.addEventListener('click', () => loginModal.classList.add('hidden'));
+  </script>
+
+</body>
+</html>
